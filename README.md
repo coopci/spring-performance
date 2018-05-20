@@ -29,5 +29,7 @@ suggestion:
 
 So if your autoscan app is insanely slow to start, refactor it using xml, it is highly probable it becomes tolerably slow.
 
+I admit, it is eaier to use Spring than not to even build this test. But isn't it the very responsility of us developer to overcome difficulties at develop time to deliver softwares run better and faster at runtime. 
+
 
 Again, one thing Jesus and Spring have in common is that their death saves us all.
