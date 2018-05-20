@@ -1,8 +1,8 @@
 # spring-performance
 
-I build this to show the fact that Java is fast and good, Spring XML is not that fast and good, and Spring auto-scan is even much worse than Spring XML. For myself, I don't need this kind of test to know the difference among the three, since I know how computers work. This project is built for the ones who don't see the obvious fact.
+I build this to show the fact that Java is fast and good, Spring XML is not that fast and good, and Spring annotation-config is even much worse than Spring XML. For myself, I don't need this kind of test to know the difference among the three, since I know how computers work. This project is built for the ones who don't see the obvious fact.
 
-gubo.raw.RawMain.java, gubo.springxml.HugeXmlApp.java, gubo.autoscan.AutoScanApp.java do roughly the same thing: new one object for every of the 4900 classes, and establish connections between the objects through their `member` field.
+gubo.raw.RawMain.java, gubo.springxml.HugeXmlApp.java, gubo.autoscan.AutoScanApp.java, gubo.annoconfig.AnnoConfigApp.java do roughly the same thing: new one object for every of the 4900 classes, and establish connections between the objects through their `member` field.
 
 
 On my Intel Core i5-5300U, 8GB, Windows 7 laptop:
@@ -17,6 +17,12 @@ gubo.springxml.HugeXmlApp.java typically runs about 8 seconds.
 gubo.autoscan.AutoScanApp.java typically runs between 33 seconds and 35 seconds.
 
 
+gubo.annoconfig.AnnoConfigApp.java typically runs between 33 seconds and 35 seconds.
+
+
+The only thin I didn't anticipated is that AutoScanApp.java and AnnoConfigApp.java take about same amount of time, I thought AutoScanApp.java would run significantly longer than AnnoConfigApp.java.
+
+
 How to run:
 1. git clone.
 2. Open this project with eclipse.
@@ -27,7 +33,7 @@ How to run:
 
 suggestion:
 
-So if your autoscan app is insanely slow to start, refactor it using xml, it is highly probable it becomes tolerably slow.
+So if your annotation-configed app is insanely slow to start, refactor it using xml, it is highly probable that it becomes tolerably slow. 
 
 I admit, it is eaier to use Spring than not to even build this test. But isn't it the very responsility of us developer to overcome difficulties at develop time to deliver softwares run better and faster at runtime. 
 
