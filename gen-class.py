@@ -32,19 +32,24 @@ def gen_class():
             
             memberclass = "String"
             importpkg = """import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;"""
             
-            component = '@Component'
+            component = '@Component("%s")' % ("book" + str(i).zfill(3) + str(j).zfill(3))
             autowired = ''
+            qualifier = ''
             if i == 1 and j == 1:
                 pass
             elif j == 1:
                 memberclass = "Book" + str(i-1).zfill(3) + str(100).zfill(3)
+                
                 importpkg += "import gubo.pkg" + str(i-1).zfill(3) + ".Book" + str(i-1).zfill(3) + str(100).zfill(3) + "; \n"
                 autowired = ''
             else:
                 memberclass = "Book" + str(i).zfill(3) + str(j-1).zfill(3)
                 autowired = '@Autowired'
+                
+                qualifier = '@Qualifier("%s")' % ("book" + str(i).zfill(3) + str(j-1).zfill(3))
             if j >= 50:
                 component = ''
                 autowired = ''
@@ -66,10 +71,11 @@ public class %s {
     }
     
     %s
+    %s
     public void setMember(%s v) {
         this.member = v;
     }
-}""" % (pkgname, importpkg, component, classname, memberclass, memberclass, autowired, memberclass)
+}""" % (pkgname, importpkg, component, classname, memberclass, memberclass, autowired, qualifier, memberclass)
             f = open(filename, "w")
             f.write(filecontent)
             f.close()
