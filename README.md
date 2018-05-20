@@ -14,7 +14,7 @@ gubo.raw.RawMain.java typically runs slightly longer than 1 second and shorter t
 gubo.springxml.HugeXmlApp.java typically runs about 8 seconds.
 
 
-gubo.raw.RawMain.java typically runs between 33 seconds and 35 seconds.
+gubo.autoscan.AutoScanApp.java typically runs between 33 seconds and 35 seconds.
 
 
 How to run:
