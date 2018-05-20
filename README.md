@@ -5,6 +5,9 @@ I build this to show the fact that Java is fast and good, Spring XML is not that
 gubo.raw.RawMain.java, gubo.springxml.HugeXmlApp.java, gubo.autoscan.AutoScanApp.java do roughly the same thing: new one object for every of the 4900 classes, and establish connections between the objects through their `member` field.
 
 
+On my Intel Core i5-5300U, 8GB, Windows 7 laptop:
+
+
 gubo.raw.RawMain.java typically runs slightly longer than 1 second and shorter than 1.5 seconds.
 
 
