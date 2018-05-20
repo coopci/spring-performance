@@ -23,3 +23,8 @@ How to run:
 3. Run gen-class.py from command line.
 4. Refresh the project in eclipse. 
 5. Run gubo.raw.RawMain.java, gubo.springxml.HugeXmlApp.java and gubo.raw.RawMain.java in eclipse.
+
+
+suggestion:
+
+So if your autoscan app is insanely slow to start, refactor it using xml, it is highly probable it becomes tolerably slow.
