@@ -36,7 +36,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;"""
             
-            component = '@Component("%s")\n@Lazy' % ("book" + str(i).zfill(3) + str(j).zfill(3))
+            # component = '@Component("%s")\n@Lazy' % ("book" + str(i).zfill(3) + str(j).zfill(3))
+            component = '@Component("%s")' % ("book" + str(i).zfill(3) + str(j).zfill(3))
             autowired = ''
             qualifier = ''
             if i == 1 and j == 1:
@@ -48,7 +49,8 @@ import org.springframework.stereotype.Component;"""
                 autowired = ''
             else:
                 memberclass = "Book" + str(i).zfill(3) + str(j-1).zfill(3)
-                autowired = '@Autowired\n@Lazy'
+                # autowired = '@Autowired\n@Lazy'
+                autowired = '@Autowired'
                 
                 qualifier = '@Qualifier("%s")' % ("book" + str(i).zfill(3) + str(j-1).zfill(3))
             if j >= 50:
@@ -193,8 +195,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     f.write(filecontent)
     f.close()
 
-    
-    
+
 def gen_huge_reverse_beans_def():
     filename = "src/HugeReverseBeansDef.xml"
     f = open(filename, "w")
@@ -239,6 +240,92 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     f.close()
 
     
+# autowire with xml
+def gen_huge_autowire_beans_def():
+    filename = "src/HugeAutowireBeansDef.xml"
+    f = open(filename, "w")
+    
+    filecontent = """<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    """
+    
+    for i in range(1, 101):
+        for j in range(1, 50):
+            classname = "gubo.pkg" + str(i).zfill(3) + ".Book" + str(i).zfill(3) + str(j).zfill(3)
+            beanid = "book" + str(i).zfill(3) + str(j).zfill(3)
+            
+            member_assign = ""
+            member_bean_id = "String"
+            
+            if i == 1 and j == 1:
+                pass
+            elif j == 1:
+                # member_bean_id = "book" + str(i-1).zfill(3) + str(100).zfill(3)
+                # member_assign = '<property name="member" ref="%s" />' % member_bean_id
+                member_assign = ''
+            else:
+                member_bean_id = "book" + str(i).zfill(3) + str(j-1).zfill(3)
+                member_assign = '<property name="member" ref="%s" />' % member_bean_id
+                
+                
+            filecontent += """
+            <bean id="%s" class="%s" autowire="byType" >
+                
+            </bean>
+    """ % (beanid, classname)
+    
+    
+    filecontent += "</beans>"
+    f.write(filecontent)
+    f.close()
+    
+    
+
+def gen_huge_reverse_autowire_beans_def():
+    filename = "src/HugeReverseAutowireBeansDef.xml"
+    f = open(filename, "w")
+    
+    filecontent = """<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    """
+    
+    beans = []
+    for i in range(1, 101):
+        for j in range(1, 50):
+            classname = "gubo.pkg" + str(i).zfill(3) + ".Book" + str(i).zfill(3) + str(j).zfill(3)
+            beanid = "book" + str(i).zfill(3) + str(j).zfill(3)
+            
+            member_assign = ""
+            member_bean_id = "String"
+            
+            if i == 1 and j == 1:
+                pass
+            elif j == 1:
+                # member_bean_id = "book" + str(i-1).zfill(3) + str(100).zfill(3)
+                # member_assign = '<property name="member" ref="%s" />' % member_bean_id
+                member_assign = ''
+            else:
+                member_bean_id = "book" + str(i).zfill(3) + str(j-1).zfill(3)
+                member_assign = '<property name="member" ref="%s" />' % member_bean_id
+            bean_def = """
+            <bean id="%s" class="%s" autowire="byType" >
+                
+            </bean>
+""" % (beanid, classname)
+            beans.append(bean_def)
+    beans.reverse()
+    for bean_def in beans:
+        filecontent += bean_def
+    
+    
+    filecontent += "</beans>"
+    f.write(filecontent)
+    f.close()
+
     
     
 def gen_autoscan_beans_def():
@@ -320,4 +407,8 @@ if __name__ == "__main__":
     gen_huge_reverse_beans_def()
     gen_autoscan_beans_def()
     gen_annoconf_beans_def()
+    
+    gen_huge_autowire_beans_def()
+    gen_huge_reverse_autowire_beans_def()
+    
     
