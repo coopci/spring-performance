@@ -5,13 +5,13 @@ import java.util.Date;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class HugeXmlApp {
+public class HugeReverseXmlApp {
 	
 	public static void main(String[] args) {
 		
 		Date before = new Date();
 		ApplicationContext context = new ClassPathXmlApplicationContext(
-				"HugeBeansDef.xml");
+				"HugeReverseBeansDef.xml");
 		Date after = new Date();
 		
 		long milliseconds = after.getTime() - before.getTime();
