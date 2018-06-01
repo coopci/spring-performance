@@ -27,7 +27,11 @@ public class CustomAutowireApp {
 		PersonA personA = (PersonA)context.getBean("personA");
 		System.out.println("g.getPersonA(): " + g.getPersonA());
 		
-		for (int i = 0; i< 10000; ++i) {
+		System.out.println("g.getPersonA2(): " + g.getPersonA2());
+		
+		
+		
+		for (int i = 0; i< 1; ++i) {
 			Field f = g.getClass().getDeclaredField("personA");
 			f.setAccessible(true);
 			f.set(g, personA);

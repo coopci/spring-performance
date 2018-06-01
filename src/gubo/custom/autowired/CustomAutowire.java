@@ -3,6 +3,9 @@ package gubo.custom.autowired;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,27 @@ public class CustomAutowire {
 		return fieldName;
 	}
 
+	
+	public Object getBean(Class<?> clazz, ApplicationContext context, String beanname) {
+		Object ret = null;
+		try {
+			return context.getBean(beanname);
+		} catch (Exception ex) {
+			
+		}
+		Map<String, ?> beans = context.getBeansOfType(clazz);
+		if (beans.size() == 1) {
+			Entry<String, ?> entry = beans.entrySet().iterator().next();
+			return entry.getValue();
+		} else if (beans.size() == 0) { 
+			// throw 
+		} else {
+			
+		}
+		
+		return ret;
+		
+	}
 	public void customAutowire(ApplicationContext context, Object bean)
 			throws BeansException, IllegalArgumentException,
 			IllegalAccessException, InvocationTargetException {
@@ -49,8 +73,12 @@ public class CustomAutowire {
 				if (beanname == null) {
 					continue;
 				}
+				
+				Parameter parameter = m.getParameters()[0];
+				
+				Object injectedBean = getBean(parameter.getType(), context, beanname);
 				m.setAccessible(true);
-				m.invoke(bean, context.getBean(beanname));
+				m.invoke(bean, injectedBean);
 			}
 		}
 
@@ -62,8 +90,10 @@ public class CustomAutowire {
 				}
 				Qualifier qua = f.getAnnotation(Qualifier.class);
 				String beanname = getInjectedBeanName(qua, f);
+				
+				Object injectedBean = getBean(f.getType(), context, beanname);
 				f.setAccessible(true);
-				f.set(bean, context.getBean(beanname));
+				f.set(bean, injectedBean);
 			}
 		}
 	}
@@ -73,7 +103,6 @@ public class CustomAutowire {
 			IllegalAccessException, InvocationTargetException {
 		String[] names = context.getBeanDefinitionNames();
 		for (String name : names) {
-
 			Object bean = context.getBean(name);
 			customAutowire(context, bean);
 		}

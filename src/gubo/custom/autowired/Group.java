@@ -10,6 +10,15 @@ public class Group {
 	public PersonA getPersonA() {
 		return personA;
 	}
+	
+	@Autowired
+	private PersonA personA2;
+	
+	public PersonA getPersonA2() {
+		return personA;
+	}
+	
+	
 	private PersonB personB;
 	public PersonB getPersonB() {
 		return personB;
