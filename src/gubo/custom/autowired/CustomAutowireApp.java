@@ -31,8 +31,8 @@ public class CustomAutowireApp {
 		
 		
 		
-		for (int i = 0; i< 1; ++i) {
-			Field f = g.getClass().getDeclaredField("personA");
+		for (int i = 0; i < 10000; ++i) {
+			Field f = g.getClass().getDeclaredField("personA2");
 			f.setAccessible(true);
 			f.set(g, personA);
 			System.out.println(" " + i);
