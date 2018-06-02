@@ -3,17 +3,30 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     
-            <bean id="personA" class="gubo.custom.autowired.PersonA">
-                
-            </bean>
-    
-            <bean id="personB" class="gubo.custom.autowired.PersonB">
-                
-            </bean>
             
             
+            <!-- 
             <bean id="group" class="gubo.custom.autowired.Group">
                 
             </bean>
+            -->
+            <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+            
+            
+   
+     <!--
+            <bean class="gubo.custom.autowired.AutowiredConstructorOnlyBeanPostProcessor" />
+                  -->
+                
+            <bean id="group2" class="gubo.custom.autowired.Group2" />
+                
+            
+            
+            <bean id="personA" class="gubo.custom.autowired.PersonA" />
+                
+    
+            <bean id="personB" class="gubo.custom.autowired.PersonB" />
+                
+    		
     
     </beans>

@@ -19,10 +19,12 @@ public class AnnoConfigApp {
 		gubo.pkg001.Book001001 book001001 = (gubo.pkg001.Book001001) context.getBean("book001001");
 		
 		gubo.pkg001.Book001002 book001002 = (gubo.pkg001.Book001002) context.getBean("book001002");
+		
+		gubo.pkg100.Book100049 book100049 = (gubo.pkg100.Book100049) context.getBean("book100049");
 
 		System.out.println("milliseconds=" + milliseconds);
 		System.out.println(book001001.member);
 		System.out.println(book001002.member);
-
+		System.out.println(book100049.member);
 	}
 }

@@ -17,6 +17,8 @@ public class CustomAutowire {
 	public boolean doSetter = false;
 	public boolean doField = true;
 
+	
+	
 	public String getInjectedBeanName(Qualifier qua, Method m) {
 		if (qua != null) {
 			return qua.value();
@@ -25,7 +27,13 @@ public class CustomAutowire {
 		if (!methodName.startsWith("set")) {
 			return null;
 		}
-		return methodName.substring(3, methodName.length());
+		
+		String ret = methodName.substring(3, methodName.length());
+		
+		
+		ret = ret.substring(0, 1).toLowerCase() + ret.substring(1, ret.length()); 
+		
+		return ret;
 	}
 
 	public String getInjectedBeanName(Qualifier qua, Field f) {
