@@ -399,7 +399,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     
 
 def gen_custom_autowire_beans_def():
-    filename = "src/CustomeAutowireBeansDef.xml"
+    filename = "src/HugeCustomAutowireBeansDef.xml"
     f = open(filename, "w")
     
     filecontent = """<beans xmlns="http://www.springframework.org/schema/beans"
@@ -437,7 +437,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     """ % (beanid, classname, member_assign)
     
     
-        
+    filecontent += '<bean class="gubo.custom.autowired.AutowiredConstructorOnlyBeanPostProcessor" />'
         
     filecontent += "</beans>"
     f.write(filecontent)
