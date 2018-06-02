@@ -98,6 +98,7 @@ public class CustomAutowireAppResearch {
         springContext.getBeanFactory().addBeanPostProcessor(abpp);
         
 		springContext.load(resource);
+		springContext.refresh();
 		return springContext;
 	}
 	
