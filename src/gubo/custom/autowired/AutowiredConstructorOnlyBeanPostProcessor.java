@@ -12,6 +12,6 @@ public class AutowiredConstructorOnlyBeanPostProcessor extends AutowiredAnnotati
 	public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean,
 			String beanName) throws BeansException {
 
-		return null;
+		return pvs;
 	}
 }
