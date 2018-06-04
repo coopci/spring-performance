@@ -1,0 +1,30 @@
+Add 
+public boolean tryInjectField(PropertyValue pv) {
+		String propertyName = pv.getName();
+		try {
+			Field field = this.object.getClass().getDeclaredField(propertyName);
+			if (field == null) {
+				return false;
+			}
+			field.setAccessible(true);
+			field.set(this.object, pv.getValue());
+			return true;
+			
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+			return false;
+		} catch (SecurityException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IllegalAccessException e) {
+			return false;
+		}
+		
+	}
+	
+	to
+	
+	BeanWrapperImpl
