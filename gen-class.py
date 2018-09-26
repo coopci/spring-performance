@@ -34,12 +34,14 @@ def gen_class():
             importpkg = """import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;"""
+import org.springframework.stereotype.Component;
+import javax.annotation.Resource;"""
             
             # component = '@Component("%s")\n@Lazy' % ("book" + str(i).zfill(3) + str(j).zfill(3))
             component = '@Component("%s")' % ("book" + str(i).zfill(3) + str(j).zfill(3))
             autowired = ''
             qualifier = ''
+            resource = ''
             if i == 1 and j == 1:
                 pass
             elif j == 1:
@@ -53,6 +55,13 @@ import org.springframework.stereotype.Component;"""
                 autowired = '@Autowired'
                 
                 qualifier = '@Qualifier("%s")' % ("book" + str(i).zfill(3) + str(j-1).zfill(3))
+
+                resource = '@Resource(name="%s")' % ("book" + str(i).zfill(3) + str(j-1).zfill(3))
+
+                autowired = ""
+                qualifier = ""
+                # resource = ""
+
             if j >= 50:
                 component = ''
                 autowired = ''
@@ -75,10 +84,11 @@ public class %s {
     
     %s
     %s
+    %s
     public void setMember(%s v) {
         this.member = v;
     }
-}""" % (pkgname, importpkg, component, classname, memberclass, memberclass, autowired, qualifier, memberclass)
+}""" % (pkgname, importpkg, component, classname, memberclass, memberclass, autowired, qualifier, resource, memberclass)
             f = open(filename, "w")
             f.write(filecontent)
             f.close()
@@ -493,7 +503,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 if __name__ == "__main__":
 
    # gen_pkg()
-   # gen_class()
+    gen_class()
    #
    #gen_giant()
    #
