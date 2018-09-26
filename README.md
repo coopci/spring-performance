@@ -41,7 +41,7 @@ suggestion:
 
 So if your annotation-configed app is insanely slow to start, refactor it using xml, it is highly probable that it becomes tolerably slow. Or if you are realy lazy, just replacing @Autowired with @Resource would also reduce your wasted time, but it is wasted any way since you use spring...
 
-I admit, it is eaier to use Spring than not to even build this test. But isn't it the very responsility of us developer to overcome difficulties at develop time to deliver softwares run better and faster at runtime. 
+I admit, it is slightly(just slightly no more) eaier to use Spring than not to even building this test. But isn't it the very responsility of us developer to overcome difficulties at develop time to deliver softwares run better and faster at runtime. 
 
 
 Again, one thing Jesus and Spring have in common is that their death saves us all.
