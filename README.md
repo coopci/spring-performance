@@ -1,6 +1,6 @@
 # spring-performance
 
-I build this to show the fact that Java is fast and good, Spring XML is not that fast and good, and Spring annotation-config is even much worse than Spring XML. For myself, I don't need this kind of test to know the difference among the three, since I know how computers work. This project is built for the ones who don't see the obvious fact.
+I build this to show the fact that Java is fast and good, Spring XML is not that fast and good, and Spring @Autowired is even much worse than Spring XML. For myself, I don't need this kind of test to know the difference among the three, since I know how computers work. This project is built for the ones who don't see the obvious fact.
 
 gubo.raw.RawMain.java, gubo.springxml.HugeXmlApp.java, gubo.autoscan.AutoScanApp.java, gubo.annoconfig.AnnoConfigApp.java do roughly the same thing: new one object for every of the 4900 classes, and establish connections between the objects through their `member` field.
 
